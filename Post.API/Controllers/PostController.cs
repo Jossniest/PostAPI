@@ -23,8 +23,15 @@ namespace Post.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPosts()
         {
-            var posts = await _postRepo.GetPosts();
-            return Ok(posts);
+            var publications = await _postRepo.GetPublications();
+            return Ok(publications);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPost(int id)
+        {
+            var publication = await _postRepo.GetPublication(id);
+            return Ok(publication);
         }
     }
 }

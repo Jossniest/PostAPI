@@ -2,12 +2,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Post.Core.Interfaces;
+using Post.Infrastructure.Data;
 using Post.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -30,11 +32,12 @@ namespace Post.API
         {
 
             services.AddControllers();
+
             services.AddScoped<IPostRepo, PostRepo>();
-            
+            services.AddDbContext<PostDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SocialMedia")));
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Post.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Publication.API", Version = "v1" });
             });
         }
 
@@ -45,7 +48,7 @@ namespace Post.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Post.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Publication.API v1"));
             }
 
             app.UseHttpsRedirection();

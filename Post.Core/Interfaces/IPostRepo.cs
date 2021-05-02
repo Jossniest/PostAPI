@@ -8,6 +8,7 @@ namespace Post.Core.Interfaces
 {
     public interface IPostRepo
     {
-        Task<IEnumerable<Posts>> GetPosts();
+        Task<IEnumerable<Publication>> GetPublications();
+        Task<Publication> GetPublication(int id);
     }
 }
