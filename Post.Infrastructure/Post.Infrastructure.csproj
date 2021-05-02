@@ -1,7 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Filters\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="VisualStudio.gitignore" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Post.Core\Post.Core.csproj" />
+  </ItemGroup>
 
 </Project>

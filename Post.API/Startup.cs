@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Post.Core.Interfaces;
+using Post.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,8 @@ namespace Post.API
         {
 
             services.AddControllers();
+            services.AddScoped<IPostRepo, PostRepo>();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Post.API", Version = "v1" });
