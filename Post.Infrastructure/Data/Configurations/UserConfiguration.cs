@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Post.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Post.Infrastructure.Data.Configurations
 {
@@ -13,8 +8,9 @@ namespace Post.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<User> entity)
         {
-            entity.HasKey(e => e.UserId);
-            entity.Property(e => e.UserId).UseIdentityColumn(1, 1);
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).UseIdentityColumn(1, 1);
+            entity.Property(e => e.Id).HasColumnName("UserId");
 
             entity.Property(e => e.BirthDate).HasColumnType("datetime").IsRequired();
 

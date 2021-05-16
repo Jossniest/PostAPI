@@ -2,10 +2,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Post.Core.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Post.Infrastructure.Data.Configurations
 {
@@ -13,8 +9,9 @@ namespace Post.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Publication> entity)
         {
-            entity.HasKey(e => e.PublicationId);
-            entity.Property(e => e.PublicationId).UseIdentityColumn(1, 1);
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).UseIdentityColumn(1, 1);
+            entity.Property(e => e.Id).HasColumnName("PublicationId");
 
             entity.Property(e => e.Date).HasDefaultValue(DateTime.Now).HasColumnType("datetime");
 
